@@ -12,7 +12,7 @@ import pandas as pd
 
 # Set GPU device
 print(torch.cuda.is_available())
-device = torch.device("cuda:0")
+device = torch.device("mps")
 
 
 # %% Load data
@@ -215,7 +215,7 @@ def apply_lrp_on_vgg16(model, image):
 
 # %%
 # Calculate relevances for first image in this test batch
-image_id = 31
+image_id = 32
 image_relevances = apply_lrp_on_vgg16(model, inputs[image_id])
 image_relevances = image_relevances.permute(0,2,3,1).detach().cpu().numpy()[0]
 image_relevances = np.interp(image_relevances, (image_relevances.min(),
